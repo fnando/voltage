@@ -1,5 +1,7 @@
 # Signal
 
+[![Code Climate](https://codeclimate.com/github/fnando/signal.png)](https://codeclimate.com/github/fnando/signal)
+
 A simple observer implementation on POROs (Plain Old Ruby Object) and ActiveRecord objects.
 
 ## Installation
