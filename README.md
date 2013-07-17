@@ -123,10 +123,10 @@ class Thing < ActiveRecord::Base
 end
 
 thing = Thing.new(:name => "Stuff")
-thing.on(:create) { puts updated_at, name }
-thing.on(:update) { puts updated_at, name }
-thing.on(:remove) { puts destroyed? }
-thing.on(:validation) { p errors.full_messages }
+thing.on(:create) {|thing| puts thing.updated_at, thing.name }
+thing.on(:update) {|thing| puts thing.updated_at, thing.name }
+thing.on(:remove) {|thing| puts thing.destroyed? }
+thing.on(:validation) {|thing| p thing.errors.full_messages }
 
 thing.save!
 #=> 2013-01-26 10:32:39 -0200

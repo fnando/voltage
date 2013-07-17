@@ -16,11 +16,11 @@ module Signal
     module InstanceMethods
       private
       def around_create_signal
-        emit_signal(:before, :create)
+        emit_signal(:before, :create, self)
         yield
         return unless persisted?
-        emit_signal(:on, :create)
-        emit_signal(:after, :create)
+        emit_signal(:on, :create, self)
+        emit_signal(:after, :create, self)
       end
 
       def around_save_signal
@@ -29,26 +29,26 @@ module Signal
           return
         end
 
-        emit_signal(:before, :update)
+        emit_signal(:before, :update, self)
         yield
-        emit_signal(:on, :update)
-        emit_signal(:after, :update)
+        emit_signal(:on, :update, self)
+        emit_signal(:after, :update, self)
       end
 
       def around_destroy_signal
-        emit_signal(:before, :remove)
+        emit_signal(:before, :remove, self)
         yield
-        emit_signal(:on, :remove)
-        emit_signal(:after, :remove)
+        emit_signal(:on, :remove, self)
+        emit_signal(:after, :remove, self)
       end
 
       def before_validation_signal
-        emit_signal(:before, :validation)
+        emit_signal(:before, :validation, self)
       end
 
       def after_validation_signal
-        emit_signal(:on, :validation) if errors.any?
-        emit_signal(:after, :validation)
+        emit_signal(:on, :validation, self) if errors.any?
+        emit_signal(:after, :validation, self)
       end
     end
   end

@@ -1,7 +1,7 @@
 class Callable
   def to_proc
     callable = self
-    proc {|*args| callable.called(self, *args) }
+    proc {|*args| callable.called(*args) }
   end
 
   def respond_to(method_name)

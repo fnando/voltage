@@ -8,9 +8,10 @@ module Signal
       @event_method = :"#{@type}_#{@event}"
     end
 
-    def method_missing(method, *args)
-      return super unless method == @event_method
-      @context.instance_exec(*args, &@block)
+    def method_missing(method_name, *args)
+      return super unless respond_to_missing?(method_name, false)
+      # @context.instance_exec(*args, &@block)
+      @block.call(*args)
     end
 
     def to_s
