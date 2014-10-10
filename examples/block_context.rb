@@ -16,5 +16,5 @@ class Contact
 end
 
 contact = Contact.new('John Doe', 'john@example.org')
-contact.on(:output) { puts name, email }
+contact.on(:output) { puts contact.name, contact.email }
 contact.output!
