@@ -1,5 +1,5 @@
-$:.unshift File.expand_path("../../lib", __FILE__)
-require "signal"
+$:.unshift File.expand_path('../../lib', __FILE__)
+require 'signal'
 
 class Arguments
   include Signal

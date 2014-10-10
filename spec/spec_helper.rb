@@ -1,16 +1,18 @@
-require "bundler"
+require 'bundler'
 Bundler.setup
 
-require "active_record"
+require 'active_record'
 
-require "signal"
-require "support/observable"
-require "support/callable"
-require "support/user"
+I18n.enforce_available_locales = false
+
+require 'signal'
+require 'support/observable'
+require 'support/callable'
+require 'support/user'
 
 ActiveRecord::Base.establish_connection({
-  :adapter => "sqlite3",
-  :database => ":memory:"
+  :adapter => 'sqlite3',
+  :database => ':memory:'
 })
 
 ActiveRecord::Schema.define(:version => 0) do

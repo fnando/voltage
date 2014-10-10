@@ -1,5 +1,5 @@
-$:.unshift File.expand_path("../../lib", __FILE__)
-require "signal"
+$:.unshift File.expand_path('../../lib', __FILE__)
+require 'signal'
 
 class Status
   include Signal
@@ -11,7 +11,7 @@ end
 
 class MyListener
   def before_ready
-    puts "Before the ready event!"
+    puts 'Before the ready event!'
   end
 
   def on_ready
@@ -19,7 +19,7 @@ class MyListener
   end
 
   def after_ready
-    puts "After the ready event!"
+    puts 'After the ready event!'
   end
 end
 
