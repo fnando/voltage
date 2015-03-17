@@ -1,6 +1,7 @@
-require 'bundler'
-Bundler.setup
+require 'codeclimate-test-reporter'
+CodeClimate::TestReporter.start
 
+require 'bundler/setup'
 require 'active_record'
 
 I18n.enforce_available_locales = false
