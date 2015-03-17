@@ -1,8 +1,8 @@
 # Signal
 
 [![Build Status](https://travis-ci.org/fnando/signal.svg?branch=master)](https://travis-ci.org/fnando/signal)
-[![Code Climate](https://codeclimate.com/github/fnando/signal.png)](https://codeclimate.com/github/fnando/signal)
 [![Code Climate](https://codeclimate.com/github/fnando/signal/badges/gpa.svg)](https://codeclimate.com/github/fnando/signal)
+[![Test Coverage](https://codeclimate.com/github/fnando/signal/badges/coverage.svg)](https://codeclimate.com/github/fnando/signal)
 
 A simple observer implementation on POROs (Plain Old Ruby Object) and ActiveRecord objects.
 
