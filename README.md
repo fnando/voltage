@@ -10,7 +10,9 @@ A simple observer implementation on POROs (Plain Old Ruby Object) and ActiveReco
 
 Add this line to your application's Gemfile:
 
-    gem "signal"
+```ruby
+gem 'signal'
+```
 
 And then execute:
 
@@ -72,7 +74,7 @@ status.ready!
 #=> After the ready event!
 ```
 
-Blocks are executed in the context of the observable object.
+Executed blocks don't switch context. You always have to emit the object you're interested in. The follow example uses `emit(:output, self)` to send the `Contact` instance to all listeners.
 
 ```ruby
 class Contact
@@ -85,12 +87,12 @@ class Contact
   end
 
   def output!
-    emit(:output)
+    emit(:output, self)
   end
 end
 
-contact = Contact.new("John Doe", "john@example.org")
-contact.on(:output) { puts name, email }
+contact = Contact.new('John Doe', 'john@example.org')
+contact.on(:output) {|contact| puts contact.name, contact.email }
 contact.output!
 #=> John Doe
 #=> john@example.org
@@ -172,7 +174,7 @@ These are the available events:
 
 ## License
 
-Copyright (c) 2013 Nando Vieira
+Copyright (c) 2013-2015 Nando Vieira
 
 MIT License
 

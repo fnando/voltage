@@ -11,10 +11,10 @@ class Contact
   end
 
   def output!
-    emit(:output)
+    emit(:output, self)
   end
 end
 
 contact = Contact.new('John Doe', 'john@example.org')
-contact.on(:output) { puts contact.name, contact.email }
+contact.on(:output) {|contact| puts contact.name, contact.email }
 contact.output!
