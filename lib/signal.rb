@@ -18,6 +18,11 @@ module Signal
     self
   end
 
+  def add_listener(listener)
+    listeners << listener
+    self
+  end
+
   def emit(event, *args)
     emit_signal(:before, event, *args)
     emit_signal(:on, event, *args)

@@ -4,6 +4,20 @@ describe Signal do
   let(:observable) { Observable.new }
   let(:callable) { Callable.new }
 
+  context 'add listener' do
+    it 'runs listener' do
+      callable.respond_to(:on_ready)
+      observable.add_listener(callable)
+      expect(callable).to receive(:called).with(no_args)
+
+      observable.emit(:ready)
+    end
+
+    it 'returns itself' do
+      expect(observable.add_listener(callable)).to eq(observable)
+    end
+  end
+
   context 'using blocks' do
     it 'triggers event' do
       observable.on(:ready, &callable)

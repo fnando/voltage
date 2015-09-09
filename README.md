@@ -66,9 +66,9 @@ class MyListener
   end
 end
 
-status = Status.new
-status.listeners << MyListener.new
-status.ready!
+Status.new
+  .add_listener(MyListener.new)
+  .ready!
 #=> Before the ready event!
 #=> I'm ready!
 #=> After the ready event!
@@ -111,10 +111,10 @@ class MyListener
   end
 end
 
-args = Arguments.new
-args.on(:args) {|a, b| puts a, b }
-args.listeners << MyListener.new
-args.emit(:args, 1, 2)
+Arguments.new
+  .on(:args) {|a, b| puts a, b }
+  .add_listener(MyListener.new)
+  .emit(:args, 1, 2)
 ```
 
 ### ActiveRecord
@@ -163,6 +163,21 @@ These are the available events:
 * `before(:validation)`: triggered before validating record.
 * `on(:validation)`: triggered when record is invalid.
 * `after(:validation)`: triggered after validating record.
+
+### Inside Rails
+
+Although there's no special code for Rails, here's just an example of how you can use it:
+
+```ruby
+class UsersController < ApplicationController
+  def create
+    @user = User.new(user_params)
+    Signup.new(@user)
+      .on(:success) { redirect_to login_path, notice: 'Welcome to MyApp!' }
+      .on(:failure) { render :new }
+  end
+end
+```
 
 ## Contributing
 
