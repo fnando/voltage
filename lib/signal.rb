@@ -38,7 +38,7 @@ module Signal
   def emit_signal(type, event, *args)
     listeners.each do |listener|
       method_name = "#{type}_#{event}"
-      listener.send(method_name, *args) if listener.respond_to?(method_name)
+      listener.send(method_name, *args) if listener.respond_to?(method_name, true)
     end
   end
 end
