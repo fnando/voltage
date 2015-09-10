@@ -105,4 +105,19 @@ describe Signal do
       observable.emit(:ready, 1, 2, 3)
     end
   end
+
+  context 'mixed listeners' do
+    it 'calls all listeners' do
+      callable.respond_to(:on_ready)
+      another_callable = Callable.new
+
+      expect(callable).to receive(:called).ordered
+      expect(another_callable).to receive(:called).ordered
+
+      observable
+        .add_listener(callable)
+        .on(:ready, &another_callable)
+        .emit(:ready)
+    end
+  end
 end
