@@ -172,9 +172,25 @@ Although there's no special code for Rails, here's just an example of how you ca
 class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
+
     Signup.new(@user)
       .on(:success) { redirect_to login_path, notice: 'Welcome to MyApp!' }
       .on(:failure) { render :new }
+      .call
+  end
+end
+```
+
+If you're using plain ActiveRecord, just do something like the following:
+
+```ruby
+class UsersController < ApplicationController
+  def create
+    @user = User.new(user_params)
+    @user
+      .on(:create) { redirect_to login_path, notice: 'Welcome to MyApp!' }
+      .on(:validation) { render :new }
+      .save
   end
 end
 ```
