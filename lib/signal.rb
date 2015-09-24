@@ -1,5 +1,6 @@
 require 'signal/active_record'
 require 'signal/listener'
+require 'signal/call'
 require 'signal/version'
 
 module Signal

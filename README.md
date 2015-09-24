@@ -195,6 +195,32 @@ class UsersController < ApplicationController
 end
 ```
 
+### Signal::Call
+
+You can include `Signal::Call` instead, so you can have a common interface for your observable object. This will add the `.call()` method to the target class, which will delegate attributes to the observable's `initialize` method and call its `call` method.
+
+```ruby
+class Contact
+  include Signal.call
+
+  attr_reader :name, :email
+
+  def initialize(name, email)
+    @name, @email = name, email
+  end
+
+  def call
+    emit(:output, self)
+  end
+end
+
+Contact.call('John', 'john@example.com') do |o|
+  o.on(:output) {|contact| puts contact }
+end
+```
+
+Notice that you don't have to explicit call the instance's `call` method; `Contact.call` will initialize the object with all the provided parameters and call `Contact#call` after the block has been executed.
+
 ## Contributing
 
 1. Fork it
@@ -213,7 +239,7 @@ Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
 "Software"), to deal in the Software without restriction, including
 without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
+distribute, sub-license, and/or sell copies of the Software, and to
 permit persons to whom the Software is furnished to do so, subject to
 the following conditions:
 

@@ -8,6 +8,7 @@ I18n.enforce_available_locales = false
 
 require 'signal'
 require 'support/observable'
+require 'support/observable_with_call'
 require 'support/callable'
 require 'support/user'
 
