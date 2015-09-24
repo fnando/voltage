@@ -197,7 +197,7 @@ end
 
 ### Signal::Call
 
-You can include `Signal::Call` instead, so you can have a common interface for your observable object. This will add the `.call()` method to the target class, which will delegate attributes to the observable's `initialize` method and call its `call` method.
+You can include `Signal.call` instead, so you can have a common interface for your observable object. This will add the `.call()` method to the target class, which will delegate attributes to the observable's `initialize` method and call its `call` method.
 
 ```ruby
 class Contact
