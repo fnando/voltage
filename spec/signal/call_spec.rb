@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Signal::Call do
+describe Signal::Extensions::Call do
   let(:callable) { Callable.new }
 
   it 'initializes observable with arguments' do

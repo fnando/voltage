@@ -1,19 +1,22 @@
 module Signal
-  module ActiveRecord
-    def self.included(base)
-      base.class_eval do
-        include Signal
-        include InstanceMethods
+  def self.active_record
+    Extensions::ActiveRecord
+  end
 
-        around_create     :around_create_signal
-        around_save       :around_save_signal
-        around_destroy    :around_destroy_signal
-        before_validation :before_validation_signal
-        after_validation  :after_validation_signal
+  module Extensions
+    module ActiveRecord
+      def self.included(base)
+        base.class_eval do
+          include Signal
+
+          around_create     :around_create_signal
+          around_save       :around_save_signal
+          around_destroy    :around_destroy_signal
+          before_validation :before_validation_signal
+          after_validation  :after_validation_signal
+        end
       end
-    end
 
-    module InstanceMethods
       private
       def around_create_signal
         emit_signal(:before, :create, self)

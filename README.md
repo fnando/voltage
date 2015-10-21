@@ -123,7 +123,7 @@ You can use Signal with ActiveRecord, which will give you some default events li
 
 ```ruby
 class Thing < ActiveRecord::Base
-  include Signal::ActiveRecord
+  include Signal.active_record
 
   validates_presence_of :name
 end

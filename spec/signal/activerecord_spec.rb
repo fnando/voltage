@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Signal::ActiveRecord do
+describe Signal::Extensions::ActiveRecord do
   let(:callable) { Callable.new }
   let(:user) { User.new(:username => 'johndoe') }
 

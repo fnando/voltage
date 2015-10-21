@@ -11,6 +11,7 @@ require 'support/observable'
 require 'support/observable_with_call'
 require 'support/callable'
 require 'support/user'
+require 'support/emitter'
 
 ActiveRecord::Base.establish_connection({
   :adapter => 'sqlite3',
