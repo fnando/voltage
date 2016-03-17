@@ -4,7 +4,7 @@ describe Signal::Extensions::Call do
   let(:callable) { Callable.new }
 
   it 'initializes observable with arguments' do
-    observable = ObservableWithCall.call(1, 2, 3) {}
+    observable = ObservableWithCall.call(1, 2, 3)
     expect(observable.args).to eq([1, 2, 3])
   end
 
