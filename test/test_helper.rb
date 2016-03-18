@@ -6,11 +6,14 @@ require "active_record"
 
 I18n.enforce_available_locales = false
 
+require "minitest/utils"
+require "minitest/autorun"
+
 require "signal"
 require "support/observable"
 require "support/observable_with_call"
-require "support/callable"
 require "support/user"
+require "support/callable"
 require "support/emitter"
 
 ActiveRecord::Base.establish_connection({
