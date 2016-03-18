@@ -1,5 +1,5 @@
-$:.unshift File.expand_path('../../lib', __FILE__)
-require 'signal'
+$:.unshift File.expand_path("../../lib", __FILE__)
+require "signal"
 
 class Contact
   include Signal.call
@@ -15,6 +15,6 @@ class Contact
   end
 end
 
-Contact.call('John', 'john@example.com') do |o|
+Contact.call("John", "john@example.com") do |o|
   o.on(:output) {|contact| puts contact.name }
 end

@@ -1,7 +1,7 @@
-require 'signal/version'
-require 'signal/listener'
-require 'signal/extensions/active_record'
-require 'signal/extensions/call'
+require "signal/version"
+require "signal/listener"
+require "signal/extensions/active_record"
+require "signal/extensions/call"
 
 module Signal
   def on(event, &block)

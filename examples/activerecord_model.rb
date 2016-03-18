@@ -1,10 +1,10 @@
-$:.unshift File.expand_path('../../lib', __FILE__)
-require 'signal'
-require 'active_record'
+$:.unshift File.expand_path("../../lib", __FILE__)
+require "signal"
+require "active_record"
 
 ActiveRecord::Base.establish_connection({
-  :adapter => 'sqlite3',
-  :database => ':memory:'
+  :adapter => "sqlite3",
+  :database => ":memory:"
 })
 
 ActiveRecord::Schema.define(:version => 0) do
@@ -20,7 +20,7 @@ class Thing < ActiveRecord::Base
   validates_presence_of :name
 end
 
-thing = Thing.new(:name => 'Stuff')
+thing = Thing.new(:name => "Stuff")
 thing.on(:create) {|model| puts model.updated_at, model.name }
 thing.on(:update) {|model| puts model.updated_at, model.name }
 thing.on(:remove) {|model| puts model.destroyed? }
@@ -30,12 +30,12 @@ thing.save!
 #=> 2013-01-26 10:32:39 -0200
 #=> Stuff
 
-thing.update_attributes(:name => 'Updated stuff')
+thing.update_attributes(:name => "Updated stuff")
 #=> 2013-01-26 10:33:11 -0200
 #=> Updated stuff
 
 thing.update_attributes(:name => nil)
-#=> ['Name can't be blank']
+#=> ["Name can"t be blank"]
 
 thing.destroy
 #=> true

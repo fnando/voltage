@@ -1,21 +1,21 @@
-require 'codeclimate-test-reporter'
+require "codeclimate-test-reporter"
 CodeClimate::TestReporter.start
 
-require 'bundler/setup'
-require 'active_record'
+require "bundler/setup"
+require "active_record"
 
 I18n.enforce_available_locales = false
 
-require 'signal'
-require 'support/observable'
-require 'support/observable_with_call'
-require 'support/callable'
-require 'support/user'
-require 'support/emitter'
+require "signal"
+require "support/observable"
+require "support/observable_with_call"
+require "support/callable"
+require "support/user"
+require "support/emitter"
 
 ActiveRecord::Base.establish_connection({
-  :adapter => 'sqlite3',
-  :database => ':memory:'
+  :adapter => "sqlite3",
+  :database => ":memory:"
 })
 
 ActiveRecord::Schema.define(:version => 0) do

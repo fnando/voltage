@@ -1,14 +1,14 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe Signal::Extensions::Call do
   let(:callable) { Callable.new }
 
-  it 'initializes observable with arguments' do
+  it "initializes observable with arguments" do
     observable = ObservableWithCall.call(1, 2, 3) {}
     expect(observable.args).to eq([1, 2, 3])
   end
 
-  it 'triggers event' do
+  it "triggers event" do
     expect(callable).to receive(:called).with([1, 2, 3])
 
     ObservableWithCall.call(1, 2, 3) do |o|

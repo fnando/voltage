@@ -1,10 +1,10 @@
-$:.unshift File.expand_path('../../lib', __FILE__)
-require 'signal'
-require 'active_record'
+$:.unshift File.expand_path("../../lib", __FILE__)
+require "signal"
+require "active_record"
 
 ActiveRecord::Base.establish_connection({
-  :adapter => 'sqlite3',
-  :database => ':memory:'
+  :adapter => "sqlite3",
+  :database => ":memory:"
 })
 
 ActiveRecord::Schema.define(:version => 0) do
@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(:version => 0) do
 end
 
 class Thing < ActiveRecord::Base
-  include Signal::ActiveRecord
+  include Signal.active_record
 
   validates_presence_of :name
 end
@@ -31,7 +31,7 @@ class MyListener
 end
 
 puts "\n=== Creating valid record"
-thing = Thing.new(:name => 'Stuff')
+thing = Thing.new(:name => "Stuff")
 thing.listeners << MyListener.new
 thing.save
 
@@ -41,16 +41,16 @@ thing.listeners << MyListener.new
 thing.save
 
 puts "\n=== Updating valid record"
-thing = Thing.create(:name => 'Stuff')
+thing = Thing.create(:name => "Stuff")
 thing.listeners << MyListener.new
-thing.update_attributes(:name => 'Updated stuff')
+thing.update_attributes(:name => "Updated stuff")
 
 puts "\n=== Updating invalid record"
-thing = Thing.create!(:name => 'Stuff')
+thing = Thing.create!(:name => "Stuff")
 thing.listeners << MyListener.new
 thing.update_attributes(:name => nil)
 
 puts "\n=== Removing record"
-thing = Thing.create(:name => 'Stuff')
+thing = Thing.create(:name => "Stuff")
 thing.listeners << MyListener.new
 thing.destroy
