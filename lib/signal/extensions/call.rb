@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Signal
   def self.call
     Extensions::Call

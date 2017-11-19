@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Callable < Minitest::Mock
   def initialize(method_name)
     super()

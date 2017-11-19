@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "test_helper"
 
 class AddListenerTest < Minitest::Test
@@ -90,7 +92,7 @@ class UsingBlocksTest < Minitest::Test
 
     observable.emit(:ready)
 
-    assert_equal %i[before on after], calls
+    assert_equal %i{before on after}, calls
   end
 
   test "keeps context" do

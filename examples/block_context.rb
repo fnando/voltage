@@ -1,4 +1,6 @@
-$:.unshift File.expand_path("../../lib", __FILE__)
+# frozen_string_literal: true
+
+$LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
 require "signal"
 
 class Contact
@@ -7,7 +9,8 @@ class Contact
   attr_reader :name, :email
 
   def initialize(name, email)
-    @name, @email = name, email
+    @name = name
+    @email = email
   end
 
   def output!
@@ -16,5 +19,5 @@ class Contact
 end
 
 contact = Contact.new("John Doe", "john@example.org")
-contact.on(:output) {|contact| puts contact.name, contact.email }
+contact.on(:output) {|c| puts c.name, c.email }
 contact.output!

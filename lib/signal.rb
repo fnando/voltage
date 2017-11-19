@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "signal/version"
 require "signal/listener"
 require "signal/extensions/active_record"
@@ -36,6 +38,7 @@ module Signal
   end
 
   private
+
   def emit_signal(type, event, *args)
     listeners.each do |listener|
       method_name = "#{type}_#{event}"

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Signal
   class Listener
     def initialize(context, type, event, &block)
@@ -17,7 +19,7 @@ module Signal
       "<#{self.class} event: #{@event_method}>"
     end
 
-    def respond_to_missing?(method_name, include_private)
+    def respond_to_missing?(method_name, _include_private)
       method_name == @event_method
     end
   end

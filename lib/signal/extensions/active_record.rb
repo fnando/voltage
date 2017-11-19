@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Signal
   def self.active_record
     Extensions::ActiveRecord
@@ -18,6 +20,7 @@ module Signal
       end
 
       private
+
       def around_create_signal
         emit_signal(:before, :create, self)
         yield
