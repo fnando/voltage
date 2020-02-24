@@ -10,7 +10,7 @@ class SignalCallTest < Minitest::Test
 
   test "triggers event" do
     callable = Callable.new(:on_args)
-    callable.expect(:on_args, nil, [[1, 2, 3]])
+    callable.expect(:on_args, nil, [1, 2, 3])
 
     ObservableWithCall.call(1, 2, 3) do |o|
       o.on(:args, &callable)

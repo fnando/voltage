@@ -4,7 +4,8 @@
 [![Code Climate](https://codeclimate.com/github/fnando/signal/badges/gpa.svg)](https://codeclimate.com/github/fnando/signal)
 [![Test Coverage](https://codeclimate.com/github/fnando/signal/badges/coverage.svg)](https://codeclimate.com/github/fnando/signal)
 
-A simple observer implementation on POROs (Plain Old Ruby Object) and ActiveRecord objects.
+A simple observer implementation on POROs (Plain Old Ruby Object) and
+ActiveRecord objects.
 
 ## Installation
 
@@ -28,7 +29,8 @@ You can use Signal with PORO (Plain Old Ruby Object) and ActiveRecord.
 
 ### Plain Ruby
 
-All you have to do is including the `Signal` module. Then you can add listeners and trigger events.
+All you have to do is including the `Signal` module. Then you can add listeners
+and trigger events.
 
 ```ruby
 class Status
@@ -49,7 +51,8 @@ status.ready!
 #=> After the ready event!
 ```
 
-You can also pass objects that implement methods like `before_*`, `on_*` and `after_*`.
+You can also pass objects that implement methods like `before_*`, `on_*` and
+`after_*`.
 
 ```ruby
 class MyListener
@@ -74,7 +77,9 @@ Status.new
 #=> After the ready event!
 ```
 
-Executed blocks don't switch context. You always have to emit the object you're interested in. The follow example uses `emit(:output, self)` to send the `Contact` instance to all listeners.
+Executed blocks don't switch context. You always have to emit the object you're
+interested in. The follow example uses `emit(:output, self)` to send the
+`Contact` instance to all listeners.
 
 ```ruby
 class Contact
@@ -119,7 +124,8 @@ Arguments.new
 
 ### ActiveRecord
 
-You can use Signal with ActiveRecord, which will give you some default events like `:create`, `:update`, `:remove` and `:validation`.
+You can use Signal with ActiveRecord, which will give you some default events
+like `:create`, `:update`, `:remove` and `:validation`.
 
 ```ruby
 class Thing < ActiveRecord::Base
@@ -151,22 +157,23 @@ thing.destroy
 
 These are the available events:
 
-* `before(:create)`: triggered before creating the record (record is valid).
-* `on(:create)`: triggered after `before(:create)` event.
-* `after(:create)`: triggered after the `on(:create)` event.
-* `before(:update)`: triggered before updating the record (record is valid).
-* `on(:update)`: triggered when the `before(:update)` event.
-* `after(:update)`: triggered after the `on(:update)` event.
-* `before(:remove)`: triggered before removing the record.
-* `on(:remove)`: triggered after the `before(:remove)`.
-* `after(:remove)`: triggered after the `on(:remove)` event.
-* `before(:validation)`: triggered before validating record.
-* `on(:validation)`: triggered when record is invalid.
-* `after(:validation)`: triggered after validating record.
+- `before(:create)`: triggered before creating the record (record is valid).
+- `on(:create)`: triggered after `before(:create)` event.
+- `after(:create)`: triggered after the `on(:create)` event.
+- `before(:update)`: triggered before updating the record (record is valid).
+- `on(:update)`: triggered when the `before(:update)` event.
+- `after(:update)`: triggered after the `on(:update)` event.
+- `before(:remove)`: triggered before removing the record.
+- `on(:remove)`: triggered after the `before(:remove)`.
+- `after(:remove)`: triggered after the `on(:remove)` event.
+- `before(:validation)`: triggered before validating record.
+- `on(:validation)`: triggered when record is invalid.
+- `after(:validation)`: triggered after validating record.
 
 ### Inside Rails
 
-Although there's no special code for Rails, here's just an example of how you can use it:
+Although there's no special code for Rails, here's just an example of how you
+can use it:
 
 ```ruby
 class UsersController < ApplicationController
@@ -197,7 +204,10 @@ end
 
 ### Signal::Call
 
-You can include `Signal.call` instead, so you can have a common interface for your observable object. This will add the `.call()` method to the target class, which will delegate attributes to the observable's `initialize` method and call its `call` method.
+You can include `Signal.call` instead, so you can have a common interface for
+your observable object. This will add the `.call()` method to the target class,
+which will delegate attributes to the observable's `initialize` method and call
+its `call` method.
 
 ```ruby
 class Contact
@@ -219,7 +229,43 @@ Contact.call('John', 'john@example.com') do |o|
 end
 ```
 
-Notice that you don't have to explicit call the instance's `call` method; `Contact.call` will initialize the object with all the provided parameters and call `Contact#call` after the block has been executed.
+Notice that you don't have to explicit call the instance's `call` method;
+`Contact.call` will initialize the object with all the provided parameters and
+call `Contact#call` after the block has been executed.
+
+### Testing
+
+`Signal::Mock` can be helpful for most test situations where you don't want to
+bring other mock libraries.
+
+```ruby
+require "signal/mock"
+
+class SomeTest < Minitest::Test
+  def test_some_test
+    mock = Signal::Mock.new
+
+    # Using listener
+    sum = Sum.new
+    sum.add_listener(mock)
+
+    # Calling `mock.on(event_name)` is required because
+    # the handler doesn't receive the event name, just the
+    # arguments.
+    sum = Sum.new
+    sum.on(:result, &mock.on(:result))
+
+    # Using with Signal.call
+    Sum.call(1, 2, &mock)
+
+    assert mock.received?(:result)
+    assert mock.received?(:result, times: 1)
+    assert mock.received?(:result, with: [3])
+    assert mock.received?(:result, with: ->(result) { result == 3 } )
+  end
+end
+
+```
 
 ## Contributing
 
@@ -231,25 +277,23 @@ Notice that you don't have to explicit call the instance's `call` method; `Conta
 
 ## License
 
-Copyright (c) 2013-2015 Nando Vieira
+Copyright (c) 2013 Nando Vieira
 
 MIT License
 
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-"Software"), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sub-license, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sub-license, and/or sell copies
+of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

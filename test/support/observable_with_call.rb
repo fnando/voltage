@@ -10,6 +10,6 @@ class ObservableWithCall
   end
 
   def call
-    emit(:args, @args)
+    emit(:args, *@args)
   end
 end

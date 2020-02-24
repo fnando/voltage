@@ -12,6 +12,7 @@ require "minitest/utils"
 require "minitest/autorun"
 
 require "signal"
+require "signal/mock"
 require "support/observable"
 require "support/observable_with_call"
 require "support/user"
