@@ -19,17 +19,16 @@ module Signal
         end
       end
 
-      private
-
-      def around_create_signal
+      private def around_create_signal
         emit_signal(:before, :create, self)
         yield
         return unless persisted?
+
         emit_signal(:on, :create, self)
         emit_signal(:after, :create, self)
       end
 
-      def around_save_signal
+      private def around_save_signal
         if new_record?
           yield
           return
@@ -41,18 +40,18 @@ module Signal
         emit_signal(:after, :update, self)
       end
 
-      def around_destroy_signal
+      private def around_destroy_signal
         emit_signal(:before, :remove, self)
         yield
         emit_signal(:on, :remove, self)
         emit_signal(:after, :remove, self)
       end
 
-      def before_validation_signal
+      private def before_validation_signal
         emit_signal(:before, :validation, self)
       end
 
-      def after_validation_signal
+      private def after_validation_signal
         emit_signal(:on, :validation, self) if errors.any?
         emit_signal(:after, :validation, self)
       end

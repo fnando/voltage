@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-$LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
+$LOAD_PATH.unshift File.expand_path("../lib", __dir__)
 require "signal"
 require "active_record"
 
@@ -23,8 +23,8 @@ class Thing < ActiveRecord::Base
 end
 
 class MyListener
-  %i{validation update create remove}.each do |type|
-    class_eval <<-RUBY
+  %i[validation update create remove].each do |type|
+    class_eval <<-RUBY, __FILE__, __LINE__ + 1
       def before_#{type}(thing); puts __method__; end
       def on_#{type}(thing); puts __method__; end
       def after_#{type}(thing); puts __method__; end

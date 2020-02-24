@@ -12,6 +12,7 @@ module Signal
 
     def method_missing(method_name, *args)
       return super unless respond_to_missing?(method_name, false)
+
       @block.call(*args)
     end
 

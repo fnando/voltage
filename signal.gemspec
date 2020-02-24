@@ -2,26 +2,31 @@
 
 require "./lib/signal/version"
 
-Gem::Specification.new do |gem|
-  gem.name          = "signal"
-  gem.version       = Signal::VERSION
-  gem.authors       = ["Nando Vieira"]
-  gem.email         = ["fnando.vieira@gmail.com"]
-  gem.description   = "A simple observer implementation for POROs (Plain Old Ruby Object) and ActiveRecord objects."
-  gem.summary       = gem.description
-  gem.homepage      = "http://github.com/fnando/signal"
+Gem::Specification.new do |spec|
+  spec.name          = "signal"
+  spec.version       = Signal::VERSION
+  spec.authors       = ["Nando Vieira"]
+  spec.email         = ["fnando.vieira@gmail.com"]
+  spec.description   = %w[
+    A simple observer implementation for POROs (Plain Old Ruby Object) and
+    ActiveRecord objects.
+  ].join(" ")
+  spec.summary       = spec.description
+  spec.homepage      = "http://github.com/fnando/signal"
 
-  gem.files         = `git ls-files -z`.split("\x0").reject do |f|
+  spec.files         = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
   end
 
-  gem.executables   = gem.files.grep(%r{^bin/}).map {|f| File.basename(f) }
-  gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
-  gem.require_paths = ["lib"]
+  spec.executables   = spec.files.grep(%r{^bin/}).map {|f| File.basename(f) }
+  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
+  spec.require_paths = ["lib"]
 
-  gem.add_development_dependency "activerecord"
-  gem.add_development_dependency "minitest-utils"
-  gem.add_development_dependency "rake"
-  gem.add_development_dependency "simplecov"
-  gem.add_development_dependency "sqlite3"
+  spec.add_development_dependency "activerecord"
+  spec.add_development_dependency "minitest-utils"
+  spec.add_development_dependency "rake"
+  spec.add_development_dependency "rubocop"
+  spec.add_development_dependency "rubocop-fnando"
+  spec.add_development_dependency "simplecov"
+  spec.add_development_dependency "sqlite3"
 end

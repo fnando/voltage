@@ -96,7 +96,7 @@ class ARUpdateEvent < Minitest::Test
     user.before(:update, &callable)
 
     callable.expect(:before_update, nil, [user])
-    user.update_attributes!(username: "johnd")
+    user.update!(username: "johnd")
 
     assert callable.verify
   end
@@ -106,7 +106,7 @@ class ARUpdateEvent < Minitest::Test
     user.on(:update, &callable)
 
     callable.expect(:on_update, nil, [user])
-    user.update_attributes!(username: "johnd")
+    user.update!(username: "johnd")
 
     assert callable.verify
   end
@@ -116,7 +116,7 @@ class ARUpdateEvent < Minitest::Test
     user.after(:update, &callable)
 
     callable.expect(:after_update, nil, [user])
-    user.update_attributes!(username: "johnd")
+    user.update!(username: "johnd")
 
     assert callable.verify
   end
