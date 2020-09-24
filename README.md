@@ -1,6 +1,6 @@
 # Signal
 
-[![Build Status](https://travis-ci.org/fnando/signal.svg?branch=master)](https://travis-ci.org/fnando/signal)
+[![Build Status](https://travis-ci.org/fnando/signal.svg?branch=main)](https://travis-ci.org/fnando/signal)
 [![Code Climate](https://codeclimate.com/github/fnando/signal/badges/gpa.svg)](https://codeclimate.com/github/fnando/signal)
 [![Test Coverage](https://codeclimate.com/github/fnando/signal/badges/coverage.svg)](https://codeclimate.com/github/fnando/signal)
 [![Gem](https://img.shields.io/gem/v/signal.svg)](https://rubygems.org/gems/signal)
