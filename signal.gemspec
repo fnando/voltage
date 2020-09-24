@@ -13,8 +13,9 @@ Gem::Specification.new do |spec|
   ].join(" ")
   spec.summary       = spec.description
   spec.homepage      = "http://github.com/fnando/signal"
+  spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
 
-  spec.files         = `git ls-files -z`.split("\x0").reject do |f|
+  spec.files = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
   end
 
