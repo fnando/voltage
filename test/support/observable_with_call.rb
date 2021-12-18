@@ -3,13 +3,14 @@
 class ObservableWithCall
   include Signal.call
 
-  attr_reader :args
+  attr_reader :args, :kwargs
 
-  def initialize(*args)
+  def initialize(*args, **kwargs)
     @args = args
+    @kwargs = kwargs
   end
 
   def call
-    emit(:args, *@args)
+    emit(:args, args, kwargs)
   end
 end

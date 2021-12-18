@@ -50,7 +50,16 @@ class MockTest < Minitest::Test
 
     assert_equal 1, mock.calls.size
     assert mock.received?(:args)
-    assert_equal [1, 2, 3], mock.calls.first[:args]
+    assert_equal [1, 2, 3], mock.calls.first[:args].first
+  end
+
+  test "used as a block for Signal.call with named arguments" do
+    mock = Signal::Mock.new
+    ObservableWithCall.call(a: 1, b: 2, c: 3, &mock)
+
+    assert_equal 1, mock.calls.size
+    assert mock.received?(:args)
+    assert_equal Hash[a: 1, b: 2, c: 3], mock.calls.first[:args].last
   end
 
   test "received with args" do

@@ -30,7 +30,7 @@ module Signal
     end
 
     private def received_event?(event, count)
-      received_calls = calls.select {|call| call[:event] == event }.size
+      received_calls = calls.count {|call| call[:event] == event }
 
       return received_calls.nonzero? if count == -1
 

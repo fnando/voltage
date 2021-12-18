@@ -13,8 +13,8 @@ module Signal
       end
 
       module ClassMethods
-        def call(*args)
-          new(*args).tap do |instance|
+        def call(*args, **kwargs)
+          new(*args, **kwargs).tap do |instance|
             yield(instance) if block_given?
             instance.call
           end

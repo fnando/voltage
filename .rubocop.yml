@@ -8,8 +8,5 @@ AllCops:
     - vendor/**/*
     - gemfiles/**/*
 
-Metrics/AbcSize:
-  Enabled: false
-
-Metrics/MethodLength:
+Metrics:
   Enabled: false
