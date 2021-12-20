@@ -1,8 +1,6 @@
 # Signal
 
-[![Build Status](https://travis-ci.org/fnando/signal.svg?branch=main)](https://travis-ci.org/fnando/signal)
-[![Code Climate](https://codeclimate.com/github/fnando/signal/badges/gpa.svg)](https://codeclimate.com/github/fnando/signal)
-[![Test Coverage](https://codeclimate.com/github/fnando/signal/badges/coverage.svg)](https://codeclimate.com/github/fnando/signal)
+[![Tests](https://github.com/fnando/signal/actions/workflows/ruby-tests.yml/badge.svg)](https://github.com/fnando/signal/actions/workflows/ruby-tests.yml)
 [![Gem](https://img.shields.io/gem/v/signal.svg)](https://rubygems.org/gems/signal)
 [![Gem](https://img.shields.io/gem/dt/signal.svg)](https://rubygems.org/gems/signal)
 
@@ -14,7 +12,7 @@ ActiveRecord objects.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'signal'
+gem "signal"
 ```
 
 And then execute:
