@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Signal
+module Voltage
   class Listener
     def initialize(context, type, event, &block)
       @context = context

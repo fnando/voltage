@@ -1,8 +1,8 @@
-# Signal
+# Voltage
 
-[![Tests](https://github.com/fnando/signal/actions/workflows/ruby-tests.yml/badge.svg)](https://github.com/fnando/signal/actions/workflows/ruby-tests.yml)
-[![Gem](https://img.shields.io/gem/v/signal.svg)](https://rubygems.org/gems/signal)
-[![Gem](https://img.shields.io/gem/dt/signal.svg)](https://rubygems.org/gems/signal)
+[![Tests](https://github.com/fnando/voltage/actions/workflows/ruby-tests.yml/badge.svg)](https://github.com/fnando/voltage/actions/workflows/ruby-tests.yml)
+[![Gem](https://img.shields.io/gem/v/voltage.svg)](https://rubygems.org/gems/voltage)
+[![Gem](https://img.shields.io/gem/dt/voltage.svg)](https://rubygems.org/gems/voltage)
 
 A simple observer implementation on POROs (Plain Old Ruby Object) and
 ActiveRecord objects.
@@ -12,7 +12,7 @@ ActiveRecord objects.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "signal"
+gem "voltage"
 ```
 
 And then execute:
@@ -21,20 +21,20 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install signal
+    $ gem install voltage
 
 ## Usage
 
-You can use Signal with PORO (Plain Old Ruby Object) and ActiveRecord.
+You can use Voltage with PORO (Plain Old Ruby Object) and ActiveRecord.
 
 ### Plain Ruby
 
-All you have to do is including the `Signal` module. Then you can add listeners
+All you have to do is including the `Voltage` module. Then you can add listeners
 and trigger events.
 
 ```ruby
 class Status
-  include Signal
+  include Voltage
 
   def ready!
     emit(:ready)
@@ -83,7 +83,7 @@ interested in. The follow example uses `emit(:output, self)` to send the
 
 ```ruby
 class Contact
-  include Signal
+  include Voltage
 
   attr_reader :name, :email
 
@@ -103,11 +103,11 @@ contact.output!
 #=> john@example.org
 ```
 
-You can provide arguments while emitting a signal:
+You can provide arguments while emitting a voltage:
 
 ```ruby
 class Arguments
-  include Signal
+  include Voltage
 end
 
 class MyListener
@@ -124,12 +124,12 @@ Arguments.new
 
 ### ActiveRecord
 
-You can use Signal with ActiveRecord, which will give you some default events
+You can use Voltage with ActiveRecord, which will give you some default events
 like `:create`, `:update`, `:remove` and `:validation`.
 
 ```ruby
 class Thing < ActiveRecord::Base
-  include Signal.active_record
+  include Voltage.active_record
 
   validates_presence_of :name
 end
@@ -202,16 +202,16 @@ class UsersController < ApplicationController
 end
 ```
 
-### Signal::Call
+### Voltage::Call
 
-You can include `Signal.call` instead, so you can have a common interface for
+You can include `Voltage.call` instead, so you can have a common interface for
 your observable object. This will add the `.call()` method to the target class,
 which will delegate attributes to the observable's `initialize` method and call
 its `call` method.
 
 ```ruby
 class Contact
-  include Signal.call
+  include Voltage.call
 
   attr_reader :name, :email
 
@@ -235,15 +235,15 @@ call `Contact#call` after the block has been executed.
 
 ### Testing
 
-`Signal::Mock` can be helpful for most test situations where you don't want to
+`Voltage::Mock` can be helpful for most test situations where you don't want to
 bring other mock libraries.
 
 ```ruby
-require "signal/mock"
+require "voltage/mock"
 
 class SomeTest < Minitest::Test
   def test_some_test
-    mock = Signal::Mock.new
+    mock = Voltage::Mock.new
 
     # Using listener
     sum = Sum.new
@@ -255,7 +255,7 @@ class SomeTest < Minitest::Test
     sum = Sum.new
     sum.on(:result, &mock.on(:result))
 
-    # Using with Signal.call
+    # Using with Voltage.call
     Sum.call(1, 2, &mock)
 
     assert mock.received?(:result)

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ObservableWithCall
-  include Signal.call
+  include Voltage.call
 
   attr_reader :args, :kwargs
 

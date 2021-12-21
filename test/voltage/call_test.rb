@@ -2,7 +2,7 @@
 
 require "test_helper"
 
-class SignalCallTest < Minitest::Test
+class VoltageCallTest < Minitest::Test
   test "initializes observable with arguments" do
     observable = ObservableWithCall.call(1, 2, 3)
     assert_equal [1, 2, 3], observable.args

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Signal
+module Voltage
   def self.active_record
     Extensions::ActiveRecord
   end
@@ -9,7 +9,7 @@ module Signal
     module ActiveRecord
       def self.included(base)
         base.class_eval do
-          include Signal
+          include Voltage
 
           around_create     :around_create_signal
           around_save       :around_save_signal

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 $LOAD_PATH.unshift File.expand_path("../lib", __dir__)
-require "signal"
+require "voltage"
 require "active_record"
 
 ActiveRecord::Base.establish_connection(
@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 0) do
 end
 
 class Thing < ActiveRecord::Base
-  include Signal::ActiveRecord
+  include Voltage::ActiveRecord
 
   validates_presence_of :name
 end

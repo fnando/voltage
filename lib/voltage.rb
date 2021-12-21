@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require "signal/version"
-require "signal/listener"
-require "signal/extensions/active_record"
-require "signal/extensions/call"
+require "voltage/version"
+require "voltage/listener"
+require "voltage/extensions/active_record"
+require "voltage/extensions/call"
 
-module Signal
+module Voltage
   def on(event, &block)
     listeners << Listener.new(self, __method__, event, &block)
     self

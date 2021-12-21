@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Emitter
-  include Signal
+  include Voltage
 
   def call
     ActiveRecord::Base.transaction do

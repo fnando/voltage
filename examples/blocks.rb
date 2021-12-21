@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 $LOAD_PATH.unshift File.expand_path("../lib", __dir__)
-require "signal"
+require "voltage"
 
 class Status
-  include Signal
+  include Voltage
 
   def ready!
     emit(:ready)
