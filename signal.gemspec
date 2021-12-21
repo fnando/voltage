@@ -23,6 +23,15 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
+  spec.post_install_message =
+    "\n====================================================================\n" \
+    "`signal` has been deprecated in favor of `voltage`.\n" \
+    "To install it, use `gem install voltage` or add it to your gemfile.\n" \
+    "For details, please visit https://github.com/fnando/signal/issues/6" \
+    "\n====================================================================\n\n"
+
+  spec.add_dependency "voltage"
+
   spec.add_development_dependency "activerecord"
   spec.add_development_dependency "minitest-utils"
   spec.add_development_dependency "pry-meta"
