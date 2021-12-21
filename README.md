@@ -1,11 +1,28 @@
-# Voltage
+<p align="center">
+  <a href="https://github.com/fnando/voltage/">
+    <img width="250" src="https://github.com/fnando/voltage/raw/main/voltage.svg" alt="voltage">
+  </a>
+</p>
 
-[![Tests](https://github.com/fnando/voltage/actions/workflows/ruby-tests.yml/badge.svg)](https://github.com/fnando/voltage/actions/workflows/ruby-tests.yml)
-[![Gem](https://img.shields.io/gem/v/voltage.svg)](https://rubygems.org/gems/voltage)
-[![Gem](https://img.shields.io/gem/dt/voltage.svg)](https://rubygems.org/gems/voltage)
+<p align="center">
+  A simple observer implementation for POROs (Plain Old Ruby Object)
+  <br>
+  and ActiveRecord objects.
+</p>
 
-A simple observer implementation on POROs (Plain Old Ruby Object) and
-ActiveRecord objects.
+<p align="center">
+  <a href="https://github.com/fnando/voltage/actions/workflows/ruby-tests.yml">
+    <img src="https://github.com/fnando/voltage/actions/workflows/ruby-tests.yml/badge.svg" alt="Tests">
+  </a>
+  <a href="https://rubygems.org/gems/voltage">
+    <img src="https://img.shields.io/gem/v/voltage.svg" alt="Gem">
+  </a>
+  <a href="https://rubygems.org/gems/voltage">
+    <img src="https://img.shields.io/gem/dt/voltage.svg" alt="Gem">
+  </a>
+</p>
+
+---
 
 ## Installation
 
