@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-module Signal
-  VERSION = "1.3.1"
+module Voltage
+  VERSION = "0.1.0"
 end

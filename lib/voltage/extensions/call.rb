@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Signal
+module Voltage
   def self.call
     Extensions::Call
   end
@@ -8,7 +8,7 @@ module Signal
   module Extensions
     module Call
       def self.included(target)
-        target.include(Signal)
+        target.include(Voltage)
         target.extend(ClassMethods)
       end
 
