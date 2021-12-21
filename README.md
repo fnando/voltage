@@ -20,6 +20,12 @@
   <a href="https://rubygems.org/gems/voltage">
     <img src="https://img.shields.io/gem/dt/voltage.svg" alt="Gem">
   </a>
+  <a href="https://github.com/fnando/voltage/actions/workflows/codeql-analysis.yml">
+    <img src="https://github.com/fnando/voltage/actions/workflows/codeql-analysis.yml/badge.svg" alt="CodeQL">
+  </a>
+  <a href="https://tldrlegal.com/license/mit-license">
+    <img src="https://img.shields.io/:License-MIT-blue.svg" alt="License: MIT">
+  </a>
 </p>
 
 ---
